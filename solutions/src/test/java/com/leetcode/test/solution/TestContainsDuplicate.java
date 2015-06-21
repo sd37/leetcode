@@ -1,3 +1,6 @@
+package com.leetcode.test.solution;
+
+import com.leetcode.main.solution.ContainsDuplicate;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

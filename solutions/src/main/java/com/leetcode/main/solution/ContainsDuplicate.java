@@ -1,8 +1,7 @@
-/**
+package com.leetcode.main.solution; /**
  * https://leetcode.com/problems/contains-duplicate/
  * Status = Accepted
  */
-
 import java.util.HashSet;
 import java.util.Set;
 
