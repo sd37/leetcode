@@ -17,8 +17,8 @@ public class MinimumDepthOfBinaryTree {
       return 0;
     }
 
-    Queue<TreeNode> q = new LinkedList<TreeNode>();
-    Map<TreeNode, Integer> nodeLevel = new HashMap<TreeNode, Integer>();
+    Queue<TreeNode> q = new LinkedList<>();
+    Map<TreeNode, Integer> nodeLevel = new HashMap<>();
 
     q.add(root);
     nodeLevel.put(root, 1);

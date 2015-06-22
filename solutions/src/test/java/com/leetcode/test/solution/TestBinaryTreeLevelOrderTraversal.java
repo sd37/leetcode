@@ -36,14 +36,14 @@ public class TestBinaryTreeLevelOrderTraversal {
 
     List<List<Integer>> levelOrder = soln.levelOrder(root);
 
-    List<Integer> l1 = new ArrayList<Integer>();
+    List<Integer> l1 = new ArrayList<>();
     l1.add(3);
 
-    List<Integer> l2 = new ArrayList<Integer>();
+    List<Integer> l2 = new ArrayList<>();
     l2.add(9);
     l2.add(20);
 
-    List<Integer> l3 = new ArrayList<Integer>();
+    List<Integer> l3 = new ArrayList<>();
     l3.add(15);
     l3.add(7);
 

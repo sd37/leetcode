@@ -10,16 +10,16 @@ import java.util.*;
 
 public class BinaryTreeLevelOrderTraversal {
   public List<List<Integer>> levelOrder(TreeNode root) {
-    List<List<Integer>> levelOrder = new ArrayList<List<Integer>>();
+    List<List<Integer>> levelOrder = new ArrayList<>();
 
     if (root == null) {
       return levelOrder;
     }
 
-    Map<Integer, List<Integer>> levelNodes = new TreeMap<Integer, List<Integer>>();
-    Map<TreeNode, Integer> nodeLevel = new HashMap<TreeNode, Integer>();
+    Map<Integer, List<Integer>> levelNodes = new TreeMap<>();
+    Map<TreeNode, Integer> nodeLevel = new HashMap<>();
 
-    Queue<TreeNode> q = new LinkedList<TreeNode>();
+    Queue<TreeNode> q = new LinkedList<>();
     q.add(root);
     nodeLevel.put(root, 0);
     levelNodes.put(nodeLevel.get(root), new ArrayList<Integer>());

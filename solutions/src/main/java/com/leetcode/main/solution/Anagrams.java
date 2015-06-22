@@ -12,9 +12,9 @@ public class Anagrams {
       throw new RuntimeException("str == null illegal input.");
     }
 
-    List<String> anagrams = new ArrayList<String>();
+    List<String> anagrams = new ArrayList<>();
 
-    Map<String, List<String>> anagramMap = new HashMap<String, List<String>>();
+    Map<String, List<String>> anagramMap = new HashMap<>();
     for (String s : strs) {
       String sortedS = sortedCharString(s);
       if (!anagramMap.containsKey(sortedS)) {
