@@ -21,7 +21,7 @@ public class BinaryTreeLevelOrderTraversal {
 
     Queue<TreeNode> q = new LinkedList<TreeNode>();
     q.add(root);
-    nodeLevel.put(root,0);
+    nodeLevel.put(root, 0);
     levelNodes.put(nodeLevel.get(root), new ArrayList<Integer>());
     levelNodes.get(nodeLevel.get(root)).add(root.val);
 
