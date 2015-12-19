@@ -15,11 +15,9 @@ public class LCABst {
       return null;
     }
 
-    List<TreeNode> p1 = new ArrayList<>();
-    List<TreeNode> p2 = new ArrayList<>();
 
-    bstSearch(root, p.val, p1);
-    bstSearch(root, q.val, p2);
+    List<TreeNode> p1 = bstSearch(root, p.val);
+    List<TreeNode> p2 = bstSearch(root, q.val);
 
     Collections.reverse(p1);
     Collections.reverse(p2);
@@ -38,15 +36,16 @@ public class LCABst {
     return null;
   }
 
-  private TreeNode bstSearch(TreeNode root, int val, List<TreeNode> path) {
+  private List<TreeNode> bstSearch(TreeNode root, int val) {
     if (root == null) {
       return null;
     }
+    List<TreeNode> path = new ArrayList<>();
     TreeNode curr = root;
     while (curr != null) {
       path.add(curr);
       if (curr.val == val) {
-        return curr;
+        return path;
       } else if (val < curr.val) {
         curr = curr.left;
       } else {
