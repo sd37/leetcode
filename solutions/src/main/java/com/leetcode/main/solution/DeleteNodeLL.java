@@ -8,5 +8,11 @@ public class DeleteNodeLL {
       return;
     }
 
+    if (node.next == null) {
+      throw new RuntimeException("Invalid input : cannot delete last node");
+    }
+
+    node.val = node.next.val;
+    node.next = node.next.next;
   }
 }
