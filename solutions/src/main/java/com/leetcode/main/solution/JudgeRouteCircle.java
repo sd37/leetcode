@@ -4,6 +4,7 @@
 package com.leetcode.main.solution;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class JudgeRouteCircle {
 
@@ -13,7 +14,7 @@ public class JudgeRouteCircle {
       return true;
     }
 
-    HashMap<Character, Integer> charToCount = new HashMap<>();
+    Map<Character, Integer> charToCount = new HashMap<>();
 
     for (char ch : moves.toCharArray()) {
       if (!charToCount.containsKey(ch)) {
