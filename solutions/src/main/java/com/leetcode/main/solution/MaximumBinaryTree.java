@@ -5,8 +5,10 @@ package com.leetcode.main.solution;
 
 import com.leetcode.common.TreeNode;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class MaximumBinaryTree {
+
   public TreeNode constructMaximumBinaryTree(int[] nums) {
     if (nums.length == 0) {
       return null;
@@ -26,14 +28,6 @@ public class MaximumBinaryTree {
   }
 
   private int getMaxIndex(int[] nums) {
-    int maxIndex = 0;
-
-    for (int i = 0; i < nums.length; i++) {
-      if (nums[maxIndex] < nums[i]) {
-        maxIndex = i;
-      }
-    }
-
-    return maxIndex;
+    return IntStream.range(0, nums.length).reduce(0, (a,b) -> nums[a] < nums[b] ? b : a);
   }
 }
