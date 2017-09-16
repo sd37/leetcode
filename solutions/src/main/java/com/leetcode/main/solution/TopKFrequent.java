@@ -23,18 +23,7 @@ public class TopKFrequent {
       countMap.put(nums[i], countMap.get(nums[i]) + 1);
     }
 
-    Queue<Pair<Integer,Integer>> pq = new PriorityQueue<>(new Comparator<Pair<Integer, Integer>>() {
-      @Override
-      public int compare(Pair<Integer, Integer> o1, Pair<Integer, Integer> o2) {
-        if (o1.getValue() < o2.getValue()) {
-          return -1;
-        } else if(o1.getValue() > o2.getValue()) {
-          return 1;
-        } else {
-          return 0;
-        }
-      }
-    });
+    Queue<Pair<Integer,Integer>> pq = new PriorityQueue<>(Comparator.comparing(Pair::getValue));
 
     for (Integer key : countMap.keySet()) {
       pq.add(new Pair<>(key, countMap.get(key)));
