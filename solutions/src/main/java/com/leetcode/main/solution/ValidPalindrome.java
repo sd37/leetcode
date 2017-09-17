@@ -1,28 +1,38 @@
 package com.leetcode.main.solution;
 // https://leetcode.com/contest/leetcode-weekly-contest-50/problems/valid-palindrome-ii/
-// status = TLE
+// status = AC
 
 public class ValidPalindrome {
 
   public boolean validPalindrome(String s) {
-    if (isPalindrome(s)) {
+    if (s.length() < 2) {
       return true;
     }
 
-    for (int i = 0; i < s.length(); i++) {
-      String newString = new StringBuilder(s).deleteCharAt(i).toString();
-      if (isPalindrome(newString)) {
-        return true;
+    int i = 0;
+    int j = s.length() - 1;
+
+    while (i < j) {
+      if (s.charAt(i) != s.charAt(j)) {
+        break;
       }
+      i++;
+      j--;
     }
-    return false;
+
+    if(i >= j) {
+      return true;
+    }
+
+    return isPalin(s.substring(i + 1, j + 1))
+        || isPalin(s.substring(i,j));
   }
 
-  private boolean isPalindrome(String s) {
-    if (s == null) {
-      return true;
+  private boolean isPalin(String s) {
+    if(s == null) {
+      return false;
     }
-    StringBuilder sb = new StringBuilder(s);
-    return s.equals(sb.reverse().toString());
+
+    return s.equals(new StringBuilder(s).reverse().toString());
   }
 }
