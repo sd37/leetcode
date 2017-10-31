@@ -14,20 +14,20 @@ public class ConvertBstToGreaterTree {
     }
 
     residueSum = 0;
-    convertBstHelper(root, null);
+    convertBstHelper(root);
     return root;
   }
 
-  private void convertBstHelper(TreeNode root, TreeNode parent) {
+  private void convertBstHelper(TreeNode root) {
     if (root.right != null) {
-      convertBstHelper(root.right, root);
+      convertBstHelper(root.right);
     }
 
     root.val += residueSum;
     residueSum = root.val;
 
     if (root.left != null) {
-      convertBstHelper(root.left, root);
+      convertBstHelper(root.left);
     }
   }
 }
