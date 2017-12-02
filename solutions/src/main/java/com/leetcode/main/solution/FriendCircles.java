@@ -3,6 +3,7 @@
 
 package com.leetcode.main.solution;
 
+@SuppressWarnings("ALL")
 class DisjointSet {
 
   private int N;
