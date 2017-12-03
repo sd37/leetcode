@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/valid-anagram/description/
+// Status = AC
+
 package com.leetcode.main.solution;
 
 import java.util.Arrays;
@@ -39,8 +42,8 @@ public class ValidAnagram {
   }
 
   private String sortCharString(String s) {
-    if (s == null) {
-      return null;
+    if (s == null || s.length() == 0) {
+      return s;
     }
 
     char[] newS = s.toCharArray();
