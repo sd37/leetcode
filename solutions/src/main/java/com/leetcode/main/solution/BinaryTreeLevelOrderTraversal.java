@@ -7,8 +7,11 @@ package com.leetcode.main.solution;
 import com.leetcode.common.TreeNode;
 
 import java.util.*;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map.Entry;
 
 public class BinaryTreeLevelOrderTraversal {
+
   public List<List<Integer>> levelOrder(TreeNode root) {
     List<List<Integer>> levelOrder = new ArrayList<>();
 
@@ -16,40 +19,37 @@ public class BinaryTreeLevelOrderTraversal {
       return levelOrder;
     }
 
-    Map<Integer, List<Integer>> levelNodes = new TreeMap<>();
-    Map<TreeNode, Integer> nodeLevel = new HashMap<>();
+    Deque<Entry<TreeNode, Integer>> q = new ArrayDeque<>();
+    Map<Integer, List<Integer>> levelMap = new TreeMap<>();
 
-    Queue<TreeNode> q = new LinkedList<>();
-    q.add(root);
-    nodeLevel.put(root, 0);
-    levelNodes.put(nodeLevel.get(root), new ArrayList<Integer>());
-    levelNodes.get(nodeLevel.get(root)).add(root.val);
+    q.add(new SimpleEntry<TreeNode, Integer>(root, 0));
+    levelMap.put(0, Arrays.asList(root.val));
 
-    while (!q.isEmpty()) {
-      TreeNode curr = q.poll();
-      int nextLevel = nodeLevel.get(curr) + 1;
-      if (curr.left != null) {
-        q.add(curr.left);
-        nodeLevel.put(curr.left, nextLevel);
-        if (!levelNodes.containsKey(nextLevel)) {
-          levelNodes.put(nextLevel, new ArrayList<Integer>());
+    while(!q.isEmpty()) {
+      Entry<TreeNode, Integer> curr = q.poll();
+      int nextLevel = curr.getValue() + 1;
+
+      if(curr.getKey().left != null) {
+        q.add(new SimpleEntry<TreeNode, Integer>(curr.getKey().left, nextLevel));
+        if(!levelMap.containsKey(nextLevel)) {
+          levelMap.put(nextLevel, new ArrayList<>());
         }
-        levelNodes.get(nextLevel).add(curr.left.val);
+        levelMap.get(nextLevel).add(curr.getKey().left.val);
       }
 
-      if (curr.right != null) {
-        q.add(curr.right);
-        nodeLevel.put(curr.right, nextLevel);
-        if (!levelNodes.containsKey(nextLevel)) {
-          levelNodes.put(nextLevel, new ArrayList<Integer>());
+      if(curr.getKey().right != null) {
+        q.add(new SimpleEntry<TreeNode, Integer>(curr.getKey().right, nextLevel));
+        if(!levelMap.containsKey(nextLevel)) {
+          levelMap.put(nextLevel, new ArrayList<>());
         }
-        levelNodes.get(nextLevel).add(curr.right.val);
+        levelMap.get(nextLevel).add(curr.getKey().right.val);
       }
     }
 
-    for (Integer i : levelNodes.keySet()) {
-      levelOrder.add(levelNodes.get(i));
+    for(int l : levelMap.keySet()) {
+      levelOrder.add(levelMap.get(l));
     }
+
     return levelOrder;
   }
 }
