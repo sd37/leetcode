@@ -4,7 +4,9 @@
 package com.leetcode.main.solution;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 class Graph {
   private int V;
@@ -24,11 +26,11 @@ class Graph {
   }
 
   public boolean isCyclic() {
-    boolean[] seen = new boolean[V];
-    boolean[] recStack = new boolean[V];
+    Set<Integer> seen = new HashSet<>();
+    Set<Integer> recStack = new HashSet<>();
 
     for (int i = 0; i < V; i++) {
-      if(!seen[i] && isCyclicUtil(i, seen, recStack)) {
+      if(!seen.contains(i) && isCyclicUtil(i, seen, recStack)) {
         return true;
       }
     }
@@ -36,21 +38,21 @@ class Graph {
     return false;
   }
 
-  private boolean isCyclicUtil(int v, boolean[] seen, boolean[] recStack) {
-    seen[v] = true;
-    recStack[v] = true;
+  private boolean isCyclicUtil(int v, Set<Integer> seen, Set<Integer> recStack) {
+    seen.add(v);
+    recStack.add(v);
 
     List<Integer> neighbours = adjList.get(v);
 
     for(int x : neighbours) {
-      if(!seen[x] && isCyclicUtil(x, seen, recStack)) {
+      if(!seen.contains(x) && isCyclicUtil(x, seen, recStack)) {
         return true;
-      } else if(recStack[x]) {
+      } else if(recStack.contains(x)) {
         return true;
       }
     }
 
-    recStack[v] = false;
+    recStack.remove(v);
     return false;
   }
 }
