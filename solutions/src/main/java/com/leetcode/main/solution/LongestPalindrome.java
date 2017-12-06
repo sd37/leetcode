@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/longest-palindrome/description/
+// Status = AC
+
 package com.leetcode.main.solution;
 
 import java.util.HashMap;
@@ -27,6 +30,7 @@ public class LongestPalindrome {
       if(kv.getValue() % 2 == 0) {
         res += kv.getValue();
       } else {
+        res += kv.getValue() - 1;
         oddCount++;
       }
     }
