@@ -30,11 +30,13 @@ public class LongestPalindrome {
       if(kv.getValue() % 2 == 0) {
         res += kv.getValue();
       } else {
+        // if subtract 1 from an odd integer we get even. Which can be used to generate the palindrome.
         res += kv.getValue() - 1;
         oddCount++;
       }
     }
 
+    // if oddCount !=0 we can place a single char in the middle, so need to add 1.
     if(oddCount != 0) {
       res++;
     }
