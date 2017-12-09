@@ -1,56 +1,48 @@
 /**
- * https://leetcode.com/problems/minimum-depth-of-binary-tree/
- * Status = Accepted
+ * https://leetcode.com/problems/minimum-depth-of-binary-tree/ Status = Accepted
  */
 package com.leetcode.main.solution;
 
 import com.leetcode.common.TreeNode;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Map.Entry;
 
 public class MinimumDepthOfBinaryTree {
+
   public int minDepth(TreeNode root) {
     if (root == null) {
       return 0;
     }
 
-    Queue<TreeNode> q = new LinkedList<>();
-    Map<TreeNode, Integer> nodeLevel = new HashMap<>();
+    Deque<Entry<TreeNode, Integer>> q = new ArrayDeque<>();
 
-    q.add(root);
-    nodeLevel.put(root, 1);
-
-    int minDepth = 0;
+    q.add(new SimpleEntry<TreeNode, Integer>(root, 1));
 
     while (!q.isEmpty()) {
-      TreeNode curr = q.poll();
+      Entry<TreeNode, Integer> elm = q.poll();
+      TreeNode curr = elm.getKey();
+      int level = elm.getValue();
 
       if (isLeaf(curr)) {
-        minDepth = nodeLevel.get(curr);
-        break;
+        return level;
       }
 
       if (curr.left != null) {
-        q.add(curr.left);
-        nodeLevel.put(curr.left, nodeLevel.get(curr) + 1);
+        q.add(new SimpleEntry<TreeNode, Integer>(curr.left, level + 1));
       }
 
       if (curr.right != null) {
-        q.add(curr.right);
-        nodeLevel.put(curr.right, nodeLevel.get(curr) + 1);
+        q.add(new SimpleEntry<TreeNode, Integer>(curr.right, level + 1));
       }
     }
 
-    return minDepth;
+    // never reach here.
+    return -1;
   }
 
   private boolean isLeaf(TreeNode node) {
-    if (node.left == null && node.right == null) {
-      return true;
-    }
-    return false;
+    return (node.left == null && node.right == null);
   }
 }
