@@ -18,7 +18,6 @@ public class ValidParens {
       } else{
         st.push(ch);
       }
-
     }
 
     return st.isEmpty();
