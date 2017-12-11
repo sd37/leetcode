@@ -1,9 +1,11 @@
 //https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+// Status = AC
 package com.leetcode.main.solution;
 
 import com.leetcode.common.TreeNode;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LCABst {
   public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -15,43 +17,40 @@ public class LCABst {
       return null;
     }
 
+    List<TreeNode> pathP = bstSearch(root, p.val);
+    List<TreeNode> pathQ = bstSearch(root, q.val);
 
-    List<TreeNode> p1 = bstSearch(root, p.val);
-    List<TreeNode> p2 = bstSearch(root, q.val);
+    Set<Integer> seen = pathP.stream().mapToInt(node -> node.val).boxed()
+        .collect(Collectors.toSet());
 
-    Collections.reverse(p1);
-    Collections.reverse(p2);
+    Collections.reverse(pathQ);
 
-    Set<Integer> s = new HashSet<>();
-
-    for (TreeNode x : p1) {
-      s.add(x.val);
-    }
-
-    for (TreeNode y : p2) {
-      if (s.contains(y.val)) {
-        return y;
+    for (TreeNode x : pathQ) {
+      if(seen.contains(x.val)) {
+        return x;
       }
     }
+
     return null;
   }
 
   private List<TreeNode> bstSearch(TreeNode root, int val) {
-    if (root == null) {
-      return null;
-    }
     List<TreeNode> path = new ArrayList<>();
+
     TreeNode curr = root;
-    while (curr != null) {
+
+    while(curr != null) {
       path.add(curr);
-      if (curr.val == val) {
-        return path;
-      } else if (val < curr.val) {
+
+      if(curr.val == val) {
+        break;
+      } else if(val < curr.val) {
         curr = curr.left;
       } else {
         curr = curr.right;
       }
     }
-    return null;
+
+    return path;
   }
 }
