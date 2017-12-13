@@ -1,4 +1,6 @@
 // https://leetcode.com/problems/missing-number/
+// Status = AC
+
 package com.leetcode.main.solution;
 public class MissingNumber {
   public int missingNumber(int[] nums) {
