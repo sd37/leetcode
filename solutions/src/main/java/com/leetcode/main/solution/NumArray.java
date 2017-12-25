@@ -1,22 +1,26 @@
+// https://leetcode.com/problems/range-sum-query-immutable/description/
+// Status = AC
+
 package com.leetcode.main.solution;
 
-public class NumArray {
-  class SegmentTree {
-  }
+class NumArray {
 
-
-  private int[] nums;
+  private int[] sums;
 
   public NumArray(int[] nums) {
-    this.nums = nums;
-  }
+    sums = new int[nums.length + 1];
 
-  public void update(int i, int val) {
-
+    for (int i = 0; i < nums.length; i++) {
+      sums[i + 1] = sums[i] + nums[i];
+    }
   }
 
   public int sumRange(int i, int j) {
-
-    return 0;
+    return sums[j + 1] - sums[i];
   }
 }
+
+/**
+ * Your NumArray object will be instantiated and called as such: NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(i,j);
+ */
