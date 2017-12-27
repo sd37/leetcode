@@ -26,6 +26,7 @@ public class Permutations {
     // not s >= e will fail!, because you are ignoring the last element.
     if (s > e) {
       res.add(Arrays.stream(nums).boxed().collect(Collectors.toList()));
+      return;
     }
 
     for (int i = s; i <= e; i++) {
