@@ -14,13 +14,12 @@ public class MyPow {
       return 0;
     }
 
-    if(n < 0) {
-      x = 1 / x;
-      n = Math.abs(n);
-    }
-
     double tmp = myPow(x, n / 2);
 
-    return (n % 2 == 0 ? tmp * tmp : tmp * tmp * x);
+    if(n < 0) {
+      return n % 2 == 0 ? tmp * tmp : tmp * tmp * (1 / x);
+    }
+
+    return n % 2 == 0 ? tmp * tmp : tmp * tmp * x;
   }
 }
