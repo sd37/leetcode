@@ -1,4 +1,5 @@
 //https://leetcode.com/problems/path-sum/
+// status = AC
 package com.leetcode.main.solution;
 
 import com.leetcode.common.TreeNode;
