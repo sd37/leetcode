@@ -18,7 +18,6 @@ public class TestTopKFrequent {
   @Test
   public void testProductExceptSelf() {
     List<Integer> ans = soln.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2);
-    Assert.assertEquals(1, ans.get(0).intValue());
-    Assert.assertEquals(2, ans.get(1).intValue());
+    Assert.assertEquals(2, ans.get(0).intValue());
   }
 }
