@@ -26,10 +26,10 @@ class Graph {
     }
 
     public boolean isCyclic() {
-        Set<Integer> seen = new HashSet<>();
+        Set<Integer> seen = new HashSet<>(); // needed to track of disconnected components.
         Set<Integer> recStack = new HashSet<>();
 
-        for (int i = 0; i < V; i++) {
+        for (int i = 0; i < this.V; i++) {
             if (!seen.contains(i) && isCyclicUtil(i, seen, recStack)) {
                 return true;
             }
@@ -42,12 +42,13 @@ class Graph {
         seen.add(v);
         recStack.add(v);
 
-        List<Integer> neighbours = adjList.get(v);
+        var neighbors = this.adjList.get(v);
 
-        for (int x : neighbours) {
+        for (var x : neighbors) {
             if (!seen.contains(x) && isCyclicUtil(x, seen, recStack)) {
                 return true;
-            } else if (recStack.contains(x)) {
+            }
+            else if (recStack.contains(x)) {
                 return true;
             }
         }
